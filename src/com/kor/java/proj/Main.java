@@ -1,4 +1,5 @@
 package com.kor.java.proj;
+
 import java.util.Scanner;
 
 public class Main {
@@ -6,32 +7,40 @@ public class Main {
 		System.out.println("== 프로그램 시작 ==");
 		Scanner sc = new Scanner(System.in);
 		
+		int lastArticleid = 0;
+		
 		while(true) {
-			System.out.printf("명력어)");
+			System.out.printf("명령어) ");
 			String command = sc.nextLine();
-			String title = sc.nextLine();
+			
 			command = command.trim();
 			
-			
-		if( command.length() == 0 ) {
-			continue;
+			if(command.length() == 0 ) {
+				continue;
+			}	
+			if(command.equals("system exit") ) {
+				break;
+			}
+			else if(command.equals("article write") ) {
+				int id = lastArticleid +1;
+				lastArticleid = id;
+				System.out.printf("제목 :");
+				String title = sc.nextLine();
+				
+				System.out.printf("내용 :");
+				String body = sc.nextLine();
+				
+				System.out.printf("%s번 글이 생성되었습니다.\n", id);
+			}
+			else if(command.equals("article list") ) {
+				System.out.println("게시물이 없습니다");
+			}
+			else {
+				System.out.printf("%s(은)는 존재하지 않은 명령어 입니다.\n", command);
+			}
 		}
-		if( command.equals("system exit") ) {
-			break;
-		}
-		else if( command.equals("article write") ) {
-			System.out.printf("제목:");	
-		}
-		else if( command.equals("article list") ) {
-			System.out.println("게시물이 없습니다.");
-		}
-		else {
-			System.out.printf("%s(은)는 존재하지 않는 명령어 입니다.\n", command);
-		}
-	}
-	
+
 		sc.close();
 		System.out.println("== 프로그램 끝 ==");
-
 	}
 }
